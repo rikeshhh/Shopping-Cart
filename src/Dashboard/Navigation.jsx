@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useReducer, useState } from 'react'
 import { UserContext } from '../Context/UserProvider'
 import { CartContext } from '../CartContext/CartContext';
 import { CartDetail } from './CartDetail';
@@ -8,6 +8,18 @@ export const Navigation = () => {
   const [productPrice, setProductPrice] = useState()
   const products = useContext(UserContext)
   const {setCartItem} = useContext(CartContext)
+  let initialState = 0;
+const reducer= (state,action) =>{
+ if (action.type === "INCREMENT") {
+  return parseInt(state + action.payLoad);
+ }
+ if (action.type === "DECREMENT") {
+  return state>0?parseInt(state - action.payLoad):state;
+ }
+}
+
+  const [state,dispatch] =useReducer(reducer,initialState)
+
   function increment(productAmount) {
     setTotalCount(totalCount + parseInt(productAmount))
 
@@ -17,8 +29,8 @@ export const Navigation = () => {
       setTotalCount(totalCount - parseInt(productAmount))
     }
   }
-  function addToCart (productId,productTitle){
-    setCartItem(prevCartItems => [...prevCartItems, { productId, productTitle }])
+  function addToCart (productId,productTitle,productImage){
+    setCartItem(prevCartItems => [...prevCartItems, { productId, productTitle,productImage }])
     alert("product added successfully")
   }
 const [popUp,setOpenPop] = useState(false)
@@ -38,12 +50,13 @@ const handleLoginClose = ()=>{
             <p>{product.description}</p>
             <span>{product.price}</span>
             <div>
-              <button onClick={() => increment(product.price)}>+</button>
-              <input placeholder={`${totalCount}`} disabled />
-              <button onClick={() => decrement(product.price)}>-</button>
+              <button onClick={() => dispatch({type:"INCREMENT",payLoad:product.price})}>+</button>
+              <input placeholder={`${state}`} disabled />
+              <button onClick={() => 
+               dispatch({type:"DECREMENT",payLoad:product.price})}>-</button>
             </div>
 
-            <button onClick={()=>addToCart(product.id,product.title)}>Add to Cart</button>
+            <button onClick={()=>addToCart(product.id,product.title,product.image)}>Add to Cart</button>
           </div>
         ))
       }

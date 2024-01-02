@@ -9,6 +9,7 @@ export const CartDetail = (props) => {
          {cartItem.map((item) => (
                 <div key={item.id}>
                     <h1>{item.productTitle}jk</h1>
+                    <img src={item.productImage} alt="" />
                 </div>
             ))}
         <button onClick={props.onClose}>Close</button>
