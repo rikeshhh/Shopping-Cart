@@ -1,12 +1,13 @@
 import React, { useContext, useState } from 'react'
 import { UserContext } from '../Context/UserProvider'
 import { CartContext } from '../CartContext/CartContext';
+import { CartDetail } from './CartDetail';
 
 export const Navigation = () => {
   const [totalCount, setTotalCount] = useState(0);
   const [productPrice, setProductPrice] = useState()
   const products = useContext(UserContext)
-  const setCartItem = useContext(CartContext)
+  const {setCartItem} = useContext(CartContext)
   function increment(productAmount) {
     setTotalCount(totalCount + parseInt(productAmount))
 
@@ -16,13 +17,18 @@ export const Navigation = () => {
       setTotalCount(totalCount - parseInt(productAmount))
     }
   }
-  function addToCart (productId){
-    setCartItem(productId)
+  function addToCart (productId,productTitle){
+    setCartItem(prevCartItems => [...prevCartItems, { productId, productTitle }])
+    alert("product added successfully")
   }
-  console.log(products)
+const [popUp,setOpenPop] = useState(false)
+const handleLoginClose = ()=>{
+  setOpenPop(false)
+}
   return (
     <div>
-
+<button onClick={()=>{setOpenPop(true)}}>View Cart</button>
+{popUp && <CartDetail onClose={handleLoginClose}/>}
       {
         products.map((product, index) => (
           <div key={product.id}>
@@ -37,7 +43,7 @@ export const Navigation = () => {
               <button onClick={() => decrement(product.price)}>-</button>
             </div>
 
-            <button onClick={()=>addToCart(product.id)}>Add to Cart</button>
+            <button onClick={()=>addToCart(product.id,product.title)}>Add to Cart</button>
           </div>
         ))
       }
