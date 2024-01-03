@@ -4,7 +4,11 @@
   padding: 2rem;
   text-align: center;
 }
-
+.main__container{
+  max-width: calc(1174px + 30px);
+  margin: 0 auto;
+  padding: 0px 15px;
+}
 .logo {
   height: 6em;
   padding: 1.5em;

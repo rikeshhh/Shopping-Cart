@@ -2,16 +2,17 @@
 import './App.css'
 import { CartProvider } from './CartContext/CartContext'
 import {UserProvider} from './Context/UserProvider'
-import { Dashboard } from './Dashboard/Dashboard'
+import { Dashboard } from './Component/Dashboard/Dashboard'
+import { Outlet } from "react-router-dom";
+
 function App() {
 
   return (
     <>
-<UserProvider>
-  <CartProvider>
    <Dashboard/>
-  </CartProvider>
-</UserProvider>
+  {/* <CartProvider>
+  </CartProvider> */}
+{/* </UserProvider> */}
     </>
   )
 }

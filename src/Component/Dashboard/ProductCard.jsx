@@ -1,13 +1,14 @@
 import React, { useContext, useReducer, useState } from 'react'
-import { UserContext } from '../Context/UserProvider'
-import { CartContext } from '../CartContext/CartContext';
-import { CartDetail } from './CartDetail';
-
-export const Navigation = () => {
+import { UserContext } from '../../Context/UserProvider'
+import { CartContext } from '../../CartContext/CartContext';
+import { CartDetail } from '../Cart/CartDetail';
+import './dashboar.css'
+export const ProductCard = () => {
   const [totalCount, setTotalCount] = useState(0);
   const [productPrice, setProductPrice] = useState()
   const products = useContext(UserContext)
   const {setCartItem} = useContext(CartContext)
+
   let initialState = 0;
 const reducer= (state,action) =>{
  if (action.type === "INCREMENT") {
@@ -20,17 +21,9 @@ const reducer= (state,action) =>{
 
   const [state,dispatch] =useReducer(reducer,initialState)
 
-  function increment(productAmount) {
-    setTotalCount(totalCount + parseInt(productAmount))
-
-  }
-  function decrement(productAmount) {
-    if (totalCount != 0) {
-      setTotalCount(totalCount - parseInt(productAmount))
-    }
-  }
-  function addToCart (productId,productTitle,productImage){
-    setCartItem(prevCartItems => [...prevCartItems, { productId, productTitle,productImage }])
+  
+  function addToCart (productId,productTitle,productImage,productCategory){
+    setCartItem(prevCartItems => [...prevCartItems, { productId, productTitle,productImage,productCategory}])
     alert("product added successfully")
   }
 const [popUp,setOpenPop] = useState(false)
@@ -38,13 +31,18 @@ const handleLoginClose = ()=>{
   setOpenPop(false)
 }
   return (
-    <div>
-<button onClick={()=>{setOpenPop(true)}}>View Cart</button>
+    <div className='main__container'>
+      <button onClick={()=>{setOpenPop(true)}}>View Cart</button>
 {popUp && <CartDetail onClose={handleLoginClose}/>}
+      <div className='card__items ' >
+     
       {
+        
         products.map((product, index) => (
-          <div key={product.id}>
+          <div key={product.id} className='card__contents'>
+            <figure>
             <img src={product.image} alt="" />
+            </figure>
             <h1>{product.title}</h1>
             <span>{product.category}</span>
             <p>{product.description}</p>
@@ -56,10 +54,12 @@ const handleLoginClose = ()=>{
                dispatch({type:"DECREMENT",payLoad:product.price})}>-</button>
             </div>
 
-            <button onClick={()=>addToCart(product.id,product.title,product.image)}>Add to Cart</button>
+            <button onClick={()=>addToCart(product.id,product.title,product.image,product.category)}>Add to Cart</button>
           </div>
         ))
       }
+      </div>
+
 
     </div>
   )
