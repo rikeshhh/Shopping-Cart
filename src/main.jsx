@@ -21,8 +21,8 @@ const router = createBrowserRouter([
       element: <ProductCard/>
     },
     {
-      path:"cartDetail/mens's clothing",
-      element:<CartDetail/>
+      path:"/category/men's clothing",
+      element:<DynamicCom/>
     },
     {
       path:'/category/jewelery',
@@ -35,6 +35,10 @@ const router = createBrowserRouter([
     {
       path:"/category/womens's clothing",
       element:<DynamicCom/>
+    },
+    {
+      path:"cartDetail",
+      element:<CartDetail/>
     },
  ]
   },

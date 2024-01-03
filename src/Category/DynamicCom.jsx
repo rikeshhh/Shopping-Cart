@@ -1,17 +1,25 @@
-import React, { useEffect, useReducer, useState } from 'react'
+import axios from 'axios';
+import React, { useContext, useEffect, useReducer, useState } from 'react'
 import { useLocation } from 'react-router-dom';
+import { CartContext, CartProvider } from '../CartContext/CartContext';
 
 const DynamicCom = () => {
+  const {setCartItem} = useContext(CartContext)
   let initialState = 0
-  function reducer(state,action) {
-    if(action.type === "INCREMENT"){
-      return parseInt(state + action.payLoad);
-
+  const reducer= (state,action) =>{
+    if (action.type === "INCREMENT") {
+     return parseInt(state + action.payLoad);
     }
-    if (action.type === "DECREMEMT") {
-      return parseInt(state - action.payLoad);
+    if (action.type === "DECREMENT") {
+     return state>0?parseInt(state - action.payLoad):state;
     }
+   }
+   function addToCart (productId,productTitle,productImage,productCategory){
+    setCartItem(prevCartItems => [...prevCartItems, { productId, productTitle,productImage,productCategory}])  ;
+      alert("product added successfully")
+    console.log(setCartItem)
   }
+ 
   const [state,dispatch] = useReducer(reducer,initialState)
   const [category,setCategory] = useState([])
   const location = useLocation();
@@ -20,7 +28,7 @@ const DynamicCom = () => {
     useEffect(()=>{
         const fetchData = async () => {
             try{
-    const response =await axios(`https://fakestoreapi.com/products/${location}`)
+    const response =await axios(`https://fakestoreapi.com/products${location.pathname}`)
     setCategory(response.data)
         }catch (error){
             console.error("error fetching data:",error)
@@ -41,13 +49,12 @@ const DynamicCom = () => {
   <p>{item.description}</p>
   <span>{item.price}</span>
   <div>
-    <button onClick={() => dispatch({type:"INCREMENT",payLoad:product.price})}>+</button>
+    <button onClick={() => dispatch({type:"INCREMENT",payLoad:item.price})}>+</button>
     <input placeholder={`${state}`} disabled />
     <button onClick={() => 
-     dispatch({type:"DECREMENT",payLoad:product.price})}>-</button>
+     dispatch({type:"DECREMENT",payLoad:item.price})}>-</button>
   </div>
-
-  <button onClick={()=>addToCart(product.id,product.title,product.image,product.category)}>Add to Cart</button>
+  <button onClick={()=>addToCart(item.id,item.title,item.image,item.category)}>Add to Cart</button>
 </div>
 ))}
     </div>

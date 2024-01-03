@@ -25,6 +25,7 @@ const reducer= (state,action) =>{
   function addToCart (productId,productTitle,productImage,productCategory){
     setCartItem(prevCartItems => [...prevCartItems, { productId, productTitle,productImage,productCategory}])
     alert("product added successfully")
+    console.log(productCategory)
   }
 const [popUp,setOpenPop] = useState(false)
 const handleLoginClose = ()=>{

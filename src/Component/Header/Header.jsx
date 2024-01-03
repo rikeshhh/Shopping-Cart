@@ -7,10 +7,10 @@ export const Header = () => {
         <h1>SHopping Cart</h1>
         <ul>
             <Link to="/">Home</Link>
-            <Link to="cartDetail/mens's clothing">Mens Clothing</Link>
-            <Link to="/category/jewelery">Watches</Link>
+            <Link to="/category/men's clothing">Mens Clothing</Link>
+            <Link to="/category/jewelery">Jewelery</Link>
             <Link to="/category/electronics">Electronics</Link>
-            <Link to="/category/womens's clothing">Womens Clothing</Link>
+            <Link to="/category/womens'sclothing">Womens Clothing</Link>
         </ul>
         <Link to="cartDetail">Cart</Link>
     </nav>
