@@ -11,7 +11,7 @@ const Slide = ({ item }) => {
         <div className="slide" style={styles}>
         <div className="slide_content">
         <h1>{item.cta}</h1>
-        <h1>{item.title}</h1>
+        <h2>{item.title}</h2>
        <figure>
         <img src={item.image} alt="" />
        </figure>

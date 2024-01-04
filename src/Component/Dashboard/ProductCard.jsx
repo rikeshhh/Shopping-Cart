@@ -35,33 +35,36 @@ const handleLoginClose = ()=>{
   return (
     <div className='main__container'>
       <HeroSection/>
-{popUp && <CartDetail onClose={handleLoginClose}/>}
-      <div className='card__items ' >
-     
-      {
-        
-        products.map((product, index) => (
-          <div key={product.id} className='card__contents'>
-            <figure>
-            <img src={product.image} alt="" />
-            </figure>
-            <h1>{product.title}</h1>
-            <span>{product.category}</span>
-            <p>{product.description}</p>
-            <span>{product.price}</span>
-            <div>
-              <button onClick={() => dispatch({type:"INCREMENT",payLoad:product.price})}>+</button>
-              <input placeholder={`${state}`} disabled />
-              <button onClick={() => 
-               dispatch({type:"DECREMENT",payLoad:product.price})}>-</button>
-            </div>
-
-            <button onClick={()=>addToCart(product.id,product.title,product.image,product.category)}>Add to Cart</button>
-          </div>
-        ))
-      }
       
-      </div>
+     <div className='allproducts'>
+      <h2>All Products</h2>
+     <div className='card__items ' >
+     
+     {
+       
+       products.map((product, index) => (
+         <div key={product.id} className='card__contents'>
+           <h1>{product.title}</h1>
+           <figure>
+           <img src={product.image} alt="" />
+           </figure>
+           <span>{product.category}</span>
+         
+           <span>{product.price}</span>
+           <div>
+             <span onClick={() => dispatch({type:"INCREMENT",payLoad:product.price})}>+</span>
+             <input placeholder={`${state}`} disabled />
+             <span onClick={() => 
+              dispatch({type:"DECREMENT",payLoad:product.price})}>-</span>
+           </div>
+
+           <button onClick={()=>addToCart(product.id,product.title,product.image,product.category)}>Add to Cart</button>
+         </div>
+       ))
+     }
+     
+     </div>
+     </div>
 
 
     </div>

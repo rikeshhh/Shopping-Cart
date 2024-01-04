@@ -46,7 +46,8 @@ const DynamicCom = () => {
   return (
     <div>
                 <HeroSlider slides={category} />
-      {category.map((item) => (
+   <div className='dynamic__cards'>
+   {category.map((item) => (
         <div key={item.id} >
           <div className='card__contents'>
             <figure>
@@ -59,14 +60,15 @@ const DynamicCom = () => {
             <div>
               <button onClick={() => dispatch({ type: "INCREMENT", payLoad: item.price })}>+</button>
               <input placeholder={`${state}`} disabled />
-              <button onClick={() =>
-                dispatch({ type: "DECREMENT", payLoad: item.price })}>-</button>
+              <span onClick={() =>
+                dispatch({ type: "DECREMENT", payLoad: item.price })}>-</span>
             </div>
             <button onClick={() => removeFromCart(item.id)}>Delete</button>
             <button onClick={() => addToCart(item.id, item.title, item.image, item.category)}>Add to Cart</button>
           </div>
         </div>
       ))}
+   </div>
     </div>
   )
 }
