@@ -3,6 +3,7 @@ import { UserContext } from '../../Context/UserProvider'
 import { CartContext } from '../../CartContext/CartContext';
 import { CartDetail } from '../Cart/CartDetail';
 import './dashboar.css'
+import HeroSection from '../HeroSection/HeroSection';
 export const ProductCard = () => {
   const [totalCount, setTotalCount] = useState(0);
   const [productPrice, setProductPrice] = useState()
@@ -33,7 +34,7 @@ const handleLoginClose = ()=>{
 }
   return (
     <div className='main__container'>
-      <button onClick={()=>{setOpenPop(true)}}>View Cart</button>
+      <HeroSection/>
 {popUp && <CartDetail onClose={handleLoginClose}/>}
       <div className='card__items ' >
      
@@ -59,6 +60,7 @@ const handleLoginClose = ()=>{
           </div>
         ))
       }
+      
       </div>
 
 
