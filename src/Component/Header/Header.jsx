@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './Header.css'
+import './header.css'
 import { Link } from 'react-router-dom'
 export const Header = () => {
   const [showDropdown , setShowDropdown] = useState(false)
