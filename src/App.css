@@ -154,3 +154,11 @@ button{
 .allproducts{
   padding: 200px 0px;
 }
+.added__contents{
+display: flex;
+justify-content: space-between;
+}
+.added__content_one{
+display: grid;
+grid-template-columns: repeat(3,1fr);
+}

@@ -11,7 +11,9 @@ const UserProvider = (props)=>{
     const fetchData = async () => {
         try{
 const response =await axios('https://fakestoreapi.com/products')
-setApiResult(response.data)
+const apiData = response.data;
+        setApiResult(apiData);
+        const postResponse = await axios.post('http://localhost:3000/cart', apiData);
     }catch (error){
         console.error("error fetching data:",error)
     }

@@ -15,8 +15,8 @@ const DynamicCom = () => {
       return state > 0 ? parseInt(state - action.payLoad) : state;
     }
   }
-  function addToCart(productId, productTitle, productImage, productCategory) {
-    setCartItem(prevCartItems => [...prevCartItems, { productId, productTitle, productImage, productCategory }]);
+  function addToCart(productId, productTitle, productImage, productPrice) {
+    setCartItem(prevCartItems => [...prevCartItems, { productId, productTitle, productImage, productPrice }]);
     alert("product added successfully")
     console.log(setCartItem)
   }
@@ -44,32 +44,32 @@ const DynamicCom = () => {
   console.log(location.pathname);
   console.log("Cat",category)
   return (
-    <div>
+    <div className='main__container'>
                 <HeroSlider slides={category} />
-   <div className='dynamic__cards'>
+  <div className="allproducts">
+  <div className='card__items'>
    {category.map((item) => (
-        <div key={item.id} >
-          <div className='card__contents'>
+          <div className='card__contents' key={item.id}>
             <figure>
               <img src={item.image} alt="" />
             </figure>
             <h1>{item.title}</h1>
             <span>{item.category}</span>
-            <p>{item.description}</p>
+            {/* <p>{item.description}</p> */}
             <span>{item.price}</span>
-            <div>
+            {/* <div>
               <button onClick={() => dispatch({ type: "INCREMENT", payLoad: item.price })}>+</button>
               <input placeholder={`${state}`} disabled />
               <span onClick={() =>
                 dispatch({ type: "DECREMENT", payLoad: item.price })}>-</span>
-            </div>
+            </div> */}
             <button onClick={() => removeFromCart(item.id)}>Delete</button>
-            <button onClick={() => addToCart(item.id, item.title, item.image, item.category)}>Add to Cart</button>
+            <button onClick={() => addToCart(item.id, item.title, item.image, item.price)}>Add to Cart</button>
           </div>
-        </div>
       ))}
    </div>
     </div>
+  </div>
   )
 }
 
