@@ -1,3 +1,24 @@
+.dropDown{
+    position: absolute;
+    right:47%;
+    top: 60px;
+    z-index: 100;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 15px;
+    border-top: none;
+    transition: all 0.3s ease-in;
+    background: linear-gradient(to right, black 50%, white 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+
+}
+button:hover{
+    background-color: black;
+    color: white;
+    transition: all 0.3s ease-in;
+    background-position: left bottom;
+}
 nav{
     display: flex;
     justify-content: space-between;
@@ -6,9 +27,31 @@ nav{
 }
 ul{
     display: flex;
+    flex-direction: column;
     gap: 12px;
     justify-content: space-between;
 }
 li{
     list-style-type: none;
+}
+button{
+    background-color: transparent;
+    color: black;
+    padding: 4px;
+}
+@media screen and (max-width:650px) {
+    .dropDown{
+        position: absolute;
+        right:70px;
+        top: 60px;
+        z-index: 100;
+        border: 2px solid black;
+        border-radius: 15px;
+        padding: 15px;
+        border-top: none;
+        transition: all 0.3s ease-in;
+        background: linear-gradient(to right, black 50%, white 50%);
+        background-size: 200% 100%;
+        background-position: right bottom;
+    }
 }

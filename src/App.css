@@ -12,20 +12,7 @@
 header{
   padding: 24px;
 }
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
 
 .card {
   padding: 2em;
@@ -41,6 +28,7 @@ footer{
   display: grid;
   grid-template-columns: repeat(4,1fr);
 }
+
 .footer__content div{
   display: grid;
   grid-template-columns: repeat(1,1fr);
@@ -61,6 +49,7 @@ footer{
   height: 100%;
   width: 100%;
 }
+
 .slider_wrapper .slide {
   display: inline-block;
   height: 100%;
@@ -78,6 +67,7 @@ footer{
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 300px;
 }
 .slide .slide_content button {
   padding: 20px 40px;
@@ -92,6 +82,10 @@ footer{
 }
 .slide .slide_content button:hover {
   background-color: rgb(5, 2, 2);
+}
+.slide .slide_content h2{
+  color: red;
+  font-size: 62px;
 }
 .slider .dots_wrapper {
   z-index: 999;
@@ -157,8 +151,60 @@ button{
 .added__contents{
 display: flex;
 justify-content: space-between;
+padding: 180px 0px;
 }
 .added__content_one{
 display: grid;
 grid-template-columns: repeat(3,1fr);
+}
+@media screen and (max-width:650px) {
+  .card__items{
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    gap: 12px;
+    padding: 2px;
+  }
+  .slider {
+    position: relative;
+    width: auto;
+    height: 600px;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .added__content_one{
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    }
+    
+    .added__contents{
+      display: flex;
+      justify-content: space-between;
+      padding: 80px 0px;
+      flex-direction: column;
+      gap: 12px;
+      }
+      .footer__content{
+        display: grid;
+        grid-template-columns: repeat(1,1fr);
+        gap: 18px;
+      }
+  
+   .slide .slide_content h2{
+    font-size: 70px;
+    font-weight: bold;
+    color: #dfdfdf;
+    text-align: center;
+    letter-spacing: 5px;
+    text-shadow: 0 2px 2px #dfdfdf, 
+        -2px 5px 1px #cbcbcb,
+        -4px 8px 1px #979797, 
+        -6px 11px 1px #a2a2a2, 
+        -8px 14px 1px #aeaeae, 
+        -10px 17px 1px #b5b5b5, 
+        -12px 20px 1px #bebebe, 
+        -14px 23px 1px #cecece, 
+        -16px 26px 1px #dbdbdb, 
+        -18px 29px 1px #dfdfdf;
+  }
+  
 }

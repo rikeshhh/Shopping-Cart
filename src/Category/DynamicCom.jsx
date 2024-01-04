@@ -63,7 +63,6 @@ const DynamicCom = () => {
               <span onClick={() =>
                 dispatch({ type: "DECREMENT", payLoad: item.price })}>-</span>
             </div> */}
-            <button onClick={() => removeFromCart(item.id)}>Delete</button>
             <button onClick={() => addToCart(item.id, item.title, item.image, item.price)}>Add to Cart</button>
           </div>
       ))}

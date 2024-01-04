@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './Hero.css'
+import { Link } from 'react-router-dom'
 
 const Slide = ({ item }) => {
     const styles ={
@@ -10,7 +11,13 @@ const Slide = ({ item }) => {
     return (
         <div className="slide" style={styles}>
         <div className="slide_content">
-        <h1>{item.cta}</h1>
+       
+    <button>
+      <Link to={item.linkUrl} style={{ textDecoration: 'none', color: 'white'}}>
+        {item.cta||item.title}
+      </Link>
+    </button>
+
         <h2>{item.title}</h2>
        <figure>
         <img src={item.image} alt="" />
