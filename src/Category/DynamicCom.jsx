@@ -15,11 +15,21 @@ const DynamicCom = () => {
       return state > 0 ? parseInt(state - action.payLoad) : state;
     }
   }
-  function addToCart(productId, productTitle, productImage, productPrice) {
-    setCartItem(prevCartItems => [...prevCartItems, { productId, productTitle, productImage, productPrice }]);
-    alert("product added successfully")
-    console.log(setCartItem)
-  }
+  async function addToCart (productId,productTitle,productImage,productPrice){
+    try{
+     const postResponse = await axios.post("http://localhost:3000/cart",
+     {
+       productTitle,
+       productImage,
+       productPrice
+     })
+     setCartItem(prevCartItems => [...prevCartItems, postResponse.data])
+     alert("product added successfully")
+     console.log(postResponse)
+    }catch(error){
+ console.log("error",error)
+    }
+   }
   function removeFromCart(productId) {
     const updatedCart = cartItems.filter((item) => item.productId !== productId);
     setCartItems(updatedCart);

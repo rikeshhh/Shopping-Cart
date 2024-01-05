@@ -2,10 +2,14 @@ import React from 'react'
 import HeroSlider from './HeroSlider'
 import {slidesData} from "./SliderData"
 import './Hero.css'
+import HeroBody from './HeroBody'
 
 const HeroSection = () => {
   return (
-   <HeroSlider slides={slidesData}/> 
+    <div style={{display:'flex'}}>
+      <HeroBody/>
+      {/* <HeroSlider slides={slidesData}/>  */}
+    </div>
   )
 }
 

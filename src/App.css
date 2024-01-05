@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   font-family: 'Roboto', sans-serif;
+  scroll-behavior: smooth;
 }
 .main__container{
   max-width: calc(1174px + 30px);
@@ -13,13 +14,31 @@ header{
   padding: 24px;
 }
 
+.card__items .card__contents .add__button{
+  position: absolute;
+  border: none;
+  right: 0px;
+}
 
 .card {
   padding: 2em;
 }
-
+.allProductCart{
+  display: flex;
+  position: relative;
+}
+.popCart{
+  width: 200px;
+  border: 2px solid black;
+}
 .read-the-docs {
   color: #888;
+}
+.cartDet{
+display: flex;
+flex-direction: column;
+align-items: center;
+
 }
 footer{
   width: 100%;
@@ -56,7 +75,9 @@ footer{
   width: 100%;
   position: relative;
 }
-
+.heroBody{
+  width: 50%;
+}
 .slide .slide_content {
   position: absolute;
   top: 50%;
@@ -141,6 +162,7 @@ footer{
   border: 2px solid black;
   padding: 10px 12px;
   border-radius: 12px;
+  position: relative;
 }
 figure{
   width: 200px;
@@ -151,14 +173,7 @@ figure img{
   max-height: 100%;
   object-fit: cover;
 }
-button{
-  background-color: black;
-  color: white;
-  width: 200px;
 
-  border-radius: 12px 96px;
- 
-}
 .allproducts{
   padding: 200px 0px;
 }

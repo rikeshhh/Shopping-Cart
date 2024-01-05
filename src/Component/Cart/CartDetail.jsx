@@ -24,11 +24,38 @@ export const CartDetail = (props) => {
         const newTotal = cartItem.reduce((acc, item) => acc + item.productPrice, 0);
         setTotal(newTotal);
       }, [cartItem]);
-   
-  function removeFromCart(productId, productPrice) {
-    const updatedCart = cartItem.filter((item) => item.productId !== productId);
-    setCartItem(updatedCart);
+ useEffect(() => {
+  const fetchData = async ()=>{
+    const response = await fetch('http://localhost:3000/cart');
+    const data = await response.json();
+    setCartItem(data);
+   console.log(cartItem)
   }
+ fetchData()
+ 
+ }, [])
+   
+ 
+      function removeFromCart(productId) {
+        const updatedCart = cartItem.filter((item) => item.productId !== productId);
+        setCartItem(updatedCart);
+      
+        fetch(`http://localhost:3000/cart/${productId}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then(response => {
+          if (!response.ok) {
+            console.error("Failed to remove product from cart on the server");
+          }
+        })
+        .catch(error => {
+          console.error("Error while removing product from cart:", error);
+        });
+      }
+      
 function checkout(){
   alert(total)
 }
@@ -49,7 +76,7 @@ function checkout(){
              <span onClick={() => 
               dispatch({type:"DECREMENT",payLoad:item.productPrice})}>-</span>
               //*/}
-               <button onClick={() => removeFromCart(item.productId, item.productPrice)}>Delete</button> 
+               <button onClick={() => removeFromCart(item.productId)}>Delete</button> 
             </div>
           ))}
         </div>

@@ -14,7 +14,6 @@ console.log("helloworld")
 const response =await axios('https://fakestoreapi.com/products')
 const apiData = response.data;
         setApiResult(apiData);
-        const postResponse = await axios.post('http://localhost:3000/carts', apiData);
     }catch (error){
         console.error("error fetching data:",error)
     }

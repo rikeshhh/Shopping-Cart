@@ -8,19 +8,30 @@ export const ProductCard = () => {
   const [totalCount, setTotalCount] = useState(0);
   const [productPrice, setProductPrice] = useState()
   const products = useContext(UserContext)
-  const {setCartItem} = useContext(CartContext)
+  const {setCartItem,cartItem} = useContext(CartContext)
 
 
+  async function addToCart(productId, productTitle, productImage, productPrice) {
+    const cartItem = { productId, productTitle, productImage, productPrice };
   
-  function addToCart (productId,productTitle,productImage,productPrice){
-    setCartItem(prevCartItems => [...prevCartItems, { productId, productTitle,productImage,productPrice}])
-    alert("product added successfully")
-    console.log(productCategory)
+    setCartItem(prevCartItems => [...prevCartItems, cartItem]);
+  
+    alert("Product added successfully");
+  
+    const response = await fetch('http://localhost:3000/cart', {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(cartItem),
+    });
+  
+    if (!response.ok) {
+      console.error("Failed to add product to cart");
+    }
   }
-const [popUp,setOpenPop] = useState(false)
-const handleLoginClose = ()=>{
-  setOpenPop(false)
-}
+  
+
   return (
     <div className='main__container'>
       <HeroSection/>
