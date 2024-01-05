@@ -6,7 +6,7 @@ const UserContext = createContext(null);
 const UserProvider = (props)=>{
     const {children} = props;
     const [apiResult,setApiResult] = useState([])
-
+console.log("helloworld")
   useEffect(()=>{
     const fetchData = async () => {
         try{
